@@ -7,7 +7,13 @@ import {
 } from '@syncfusion/ej2-angular-dropdowns';
 import {
   Column,
+  ContextMenuService,
+  EditService,
+  EditSettingsModel,
+  ExcelExportService,
   PageService,
+  PdfExportService,
+  ResizeService,
   SortService,
   TreeGridComponent,
 } from '@syncfusion/ej2-angular-treegrid';
@@ -17,7 +23,15 @@ import { sampleData, sortData } from '../../../jsontreegriddata';
 @Component({
   selector: 'app-grid-demo',
   templateUrl: './grid-demo.component.html',
-  providers: [PageService, SortService],
+  providers: [
+    PageService,
+    SortService,
+    ResizeService,
+    EditService,
+    ExcelExportService,
+    PdfExportService,
+    ContextMenuService,
+  ],
   styleUrls: ['./grid-demo.component.css'],
 })
 export class GridDemoComponent implements OnInit {
@@ -90,6 +104,11 @@ export class GridDemoComponent implements OnInit {
   public autoCompleteObj: AutoComplete;
   /* End for edit row */
 
+  /* Start for Context menu (list of actions appears when a cell, header, or the pager is right-clicked) */
+  public contextMenuItems: string[] = [];
+  public editing: EditSettingsModel;
+  public editparams: Object;
+  /* End for Context menu */
   ngOnInit(): void {
     this.data = sortData;
     console.log('this.data: ', this.data);
@@ -182,6 +201,26 @@ export class GridDemoComponent implements OnInit {
         console.log('this.autoCompleteObj: ', this.autoCompleteObj);
       },
     };
+    // for context Menu
+    this.contextMenuItems = [
+      'AutoFit',
+      'AutoFitAll',
+      'SortAscending',
+      'SortDescending',
+      'Edit',
+      'Delete',
+      'Save',
+      'Cancel',
+      'PdfExport',
+      'ExcelExport',
+      'CsvExport',
+      'FirstPage',
+      'PrevPage',
+      'LastPage',
+      'NextPage',
+    ];
+    this.editing = { allowDeleting: true, allowEditing: true, mode: 'Row' };
+    this.editparams = { params: { format: 'n' } };
   }
 
   /* Start for sort*/
