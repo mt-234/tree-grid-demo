@@ -17,7 +17,7 @@ import {
   SortService,
   TreeGridComponent,
 } from '@syncfusion/ej2-angular-treegrid';
-import { ActionEventArgs, SortEventArgs } from '@syncfusion/ej2-grids';
+import { ActionEventArgs, QueryCellInfoEventArgs, SortEventArgs } from '@syncfusion/ej2-grids';
 import { sampleData, sortData } from '../../../jsontreegriddata';
 
 @Component({
@@ -379,6 +379,18 @@ export class GridDemoComponent implements OnInit {
       let index: number = this.treegrid.getColumnIndexByField(columnName);
       this.reorderdropdown2.value = index.toString();
     }
-    /* ===== End for reorder column  ===== */
+  }
+  /* ===== End for reorder column  ===== */
+
+  /* ===== Start for column color  ===== */
+  queryCellInfo(args: QueryCellInfoEventArgs) {
+    console.log('args: ', args);
+    if (
+      args.column.field === 'units'
+    ) {
+      args.cell.setAttribute('style', 'background-color:#7e9c6c;color:white;');
+    } else {
+      args.cell.setAttribute('style', 'background-color:#a0807b;color:white;');
+    }
   }
 }
