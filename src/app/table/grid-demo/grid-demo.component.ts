@@ -3,8 +3,10 @@ import { CheckBoxComponent } from '@syncfusion/ej2-angular-buttons';
 import {
   DropDownListComponent,
   ChangeEventArgs,
+  AutoComplete,
 } from '@syncfusion/ej2-angular-dropdowns';
 import {
+  Column,
   PageService,
   SortService,
   TreeGridComponent,
@@ -72,9 +74,25 @@ export class GridDemoComponent implements OnInit {
   public selectdropdown3: DropDownListComponent;
   /* End for selection*/
 
+  /* Start for edit row */
+  public editSettings: Object;
+  public toolbar: Object;
+  public validationRules: Object;
+  public edit: Object;
+  public ordernamerules: Object;
+  public categorynamerules: Object;
+  public unitrules: Object;
+
+  public numericParams: Object;
+  public orderidrules: Object;
+  public startdaterules: Object;
+  public dpParams: Object;
+  public autoCompleteObj: AutoComplete;
+  /* End for edit row */
 
   ngOnInit(): void {
     this.data = sortData;
+    console.log('this.data: ', this.data);
     // for sort
     this.sortSettings = {
       columns: [
@@ -116,6 +134,54 @@ export class GridDemoComponent implements OnInit {
       { id: 'Flow', mode: 'Flow' },
       { id: 'Box', mode: 'Box' },
     ];
+
+    // for edit row
+    this.editSettings = {
+      allowEditing: true,
+      allowAdding: true,
+      allowDeleting: true,
+      mode: 'Row',
+    };
+    this.toolbar = ['Add', 'Edit', 'Delete', 'Update', 'Cancel'];
+    this.validationRules = { minLength: 0 };
+    this.edit = { params: { format: 'n' } };
+
+    this.ordernamerules = { required: true };
+    this.categorynamerules = { required: true };
+    this.unitrules = { number: true, min: 0 };
+    this.numericParams = { params: { format: 'n' } };
+    this.startdaterules = { date: true };
+
+    this.orderidrules = { required: true, number: true };
+    this.dpParams = {
+      create: () => {
+        let elem: HTMLInputElement = document.createElement('input');
+        elem.id = 'orderName';
+        return elem;
+      },
+      read: () => {
+        return this.autoCompleteObj.value;
+      },
+      destroy: () => {
+        this.autoCompleteObj.destroy();
+      },
+      write: (args: {
+        rowData: Object;
+        column: Column;
+        element: HTMLElement;
+      }) => {
+        console.log('args.rowData: ', args.rowData);
+        this.autoCompleteObj = new AutoComplete({
+          dataSource: <{ key: string; value: any }[]>(
+            this.treegrid.grid.dataSource
+          ),
+          fields: { value: 'orderName' },
+          value: args.rowData[args.column.field],
+        });
+        this.autoCompleteObj.appendTo(args.element);
+        console.log('this.autoCompleteObj: ', this.autoCompleteObj);
+      },
+    };
   }
 
   /* Start for sort*/
@@ -222,5 +288,5 @@ export class GridDemoComponent implements OnInit {
     let cellmode: any = <string>e.value;
     this.treegrid.selectionSettings.cellSelectionMode = cellmode;
   }
-   /* End for selection*/
+  /* End for selection*/
 }

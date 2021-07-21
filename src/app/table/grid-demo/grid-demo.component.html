@@ -1,5 +1,4 @@
 <div class="col-lg-9 control-section">
- 
   <ejs-treegrid
     #treegrid
     [dataSource]="data"
@@ -14,14 +13,33 @@
     [pageSettings]="pageSettings"
     [filterSettings]="filterSettings"
     [selectionSettings]="selectionSettings"
+    [allowRowDragAndDrop]="true"
+    [editSettings]="editSettings"
+    [toolbar]="toolbar"
   >
     <e-columns>
+      <e-column
+        field="orderID"
+        headerText="Order ID"
+        width="70"
+        isPrimaryKey="true"
+        textAlign="Right"
+        [edit]="numericParams"
+        [validationRules]="orderidrules"
+      ></e-column>
       <e-column
         field="orderName"
         headerText="Order Name"
         width="200"
+        [validationRules]="ordernamerules"
+        [edit]="dpParams"
       ></e-column>
-      <e-column field="Category" headerText="Category" width="150"></e-column>
+      <e-column
+        field="Category"
+        headerText="Category"
+        width="150"
+        [validationRules]="categorynamerules"
+      ></e-column>
       <e-column
         field="orderDate"
         headerText="Order Date"
@@ -29,12 +47,17 @@
         format="yMd"
         type="date"
         textAlign="Right"
+        editType="datepickeredit"
+        [validationRules]="startdaterules"
       ></e-column>
       <e-column
         field="units"
         headerText="Units"
         width="120"
         textAlign="Right"
+        editType="numericedit"
+        [edit]="numericParams"
+        [validationRules]="unitrules"
       ></e-column>
     </e-columns>
   </ejs-treegrid>
