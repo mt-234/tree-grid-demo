@@ -17,7 +17,7 @@ import {
   SortService,
   TreeGridComponent,
 } from '@syncfusion/ej2-angular-treegrid';
-import { SortEventArgs } from '@syncfusion/ej2-grids';
+import { ActionEventArgs, SortEventArgs } from '@syncfusion/ej2-grids';
 import { sampleData, sortData } from '../../../jsontreegriddata';
 
 @Component({
@@ -38,7 +38,7 @@ export class GridDemoComponent implements OnInit {
   title = 'tree-grid';
   public data: Object[] = [];
 
-  /* Start for sorting*/
+  /* ===== Start for sorting ===== */
   public sortSettings: any;
 
   @ViewChild('treegrid')
@@ -54,9 +54,9 @@ export class GridDemoComponent implements OnInit {
   @ViewChild('price')
   public price: CheckBoxComponent;
   constructor() {}
-  /* End for sorting*/
+  /* ===== End for sorting ===== */
 
-  /*Start for filter*/
+  /* =====Start for filter ===== */
   public pageSettings: Object;
   public filterSettings: Object;
   public d1data: Object;
@@ -68,9 +68,9 @@ export class GridDemoComponent implements OnInit {
   public dropdown1: DropDownListComponent;
   @ViewChild('dropdown2')
   public dropdown2: DropDownListComponent;
-  /* End for filter*/
+  /* ===== End for filter ===== */
 
-  /* Start for selection */
+  /* ===== Start for selection  ===== */
   public selectionSettings: Object;
   public selectd1data: Object;
   public fields1: Object;
@@ -86,9 +86,9 @@ export class GridDemoComponent implements OnInit {
 
   @ViewChild('selectdropdown3')
   public selectdropdown3: DropDownListComponent;
-  /* End for selection*/
+  /* ===== End for selection ===== */
 
-  /* Start for edit row */
+  /* ===== Start for edit row  ===== */
   public editSettings: Object;
   public toolbar: Object;
   public validationRules: Object;
@@ -102,13 +102,25 @@ export class GridDemoComponent implements OnInit {
   public startdaterules: Object;
   public dpParams: Object;
   public autoCompleteObj: AutoComplete;
-  /* End for edit row */
+  /* ===== End for edit row  ===== */
 
-  /* Start for Context menu (list of actions appears when a cell, header, or the pager is right-clicked) */
+  /* ===== Start for Context menu (list of actions appears when a cell, header, or the pager is right-clicked)  ===== */
   public contextMenuItems: string[] = [];
   public editing: EditSettingsModel;
   public editparams: Object;
-  /* End for Context menu */
+  /* ===== End for Context menu  ===== */
+
+  /* ===== Start for reorder column  ===== */
+  public reorderd1data: Object;
+  public reorderddlfields: Object;
+  public reorderd2data: Object;
+  public reorderfields: Object;
+  @ViewChild('reorderdropdown1')
+  public reorderdropdown1: DropDownListComponent;
+  @ViewChild('reorderdropdown2')
+  public reorderdropdown2: DropDownListComponent;
+  /* ===== End for reorder column  ===== */
+
   ngOnInit(): void {
     this.data = sortData;
     console.log('this.data: ', this.data);
@@ -221,9 +233,27 @@ export class GridDemoComponent implements OnInit {
     ];
     this.editing = { allowDeleting: true, allowEditing: true, mode: 'Row' };
     this.editparams = { params: { format: 'n' } };
+
+    // for reorder column
+    this.reorderddlfields = { text: 'name', value: 'id' };
+    (this.reorderd1data = [
+      { id: 'orderID', name: 'Order ID' },
+      { id: 'orderName', name: 'Order Name' },
+      { id: 'Category', name: 'Category' },
+      { id: 'orderDate', name: 'Order Date' },
+      { id: 'units', name: 'Units' },
+    ]),
+      (this.reorderd2data = [
+        { id: '0', name: '1' },
+        { id: '1', name: '2' },
+        { id: '2', name: '3' },
+        { id: '3', name: '4' },
+        { id: '4', name: '5' },
+      ]),
+      (this.reorderfields = { text: 'name', value: 'id' });
   }
 
-  /* Start for sort*/
+  /* ===== Start for sort ===== */
   public onClick1(e: MouseEvent): void {
     if (this.orderName.checked) {
       this.treegrid.sortByColumn('orderName', 'Ascending', true);
@@ -287,9 +317,9 @@ export class GridDemoComponent implements OnInit {
         break;
     }
   }
-  /* End for sort*/
+  /* ===== End for sort ===== */
 
-  /* Start for filter*/
+  /* ===== Start for filter ===== */
   onChange(e: ChangeEventArgs): void {
     let mode: any = <string>e.value;
     this.treegrid.filterSettings.hierarchyMode = mode;
@@ -300,9 +330,9 @@ export class GridDemoComponent implements OnInit {
     this.treegrid.filterSettings.type = type;
     this.treegrid.clearFiltering();
   }
-  /* End for filter*/
+  /* ===== End for filter ===== */
 
-  /* Start for selection*/
+  /* ===== Start for selection ===== */
   change1(e: ChangeEventArgs): void {
     let type: any = <string>e.value;
     let mode: any = <string>this.selectdropdown2.value;
@@ -327,5 +357,28 @@ export class GridDemoComponent implements OnInit {
     let cellmode: any = <string>e.value;
     this.treegrid.selectionSettings.cellSelectionMode = cellmode;
   }
-  /* End for selection*/
+  /* ===== End for selection  ===== */
+
+  /* ===== Start for reorder column  ===== */
+  public onColumnReorderChange(e: ChangeEventArgs): void {
+    let columnName: string = <string>e.value;
+    let index: number = this.treegrid.getColumnIndexByField(columnName);
+    this.reorderdropdown2.value = index.toString();
+  }
+  public columnReorderchange(e: ChangeEventArgs): void {
+    let columnName: string = <string>this.reorderdropdown1.value;
+    let toColumnIndex: number = <number>e.value;
+    this.treegrid.reorderColumns(
+      columnName,
+      (<Column>this.treegrid.columns[toColumnIndex]).field
+    );
+  }
+  public actionComplete(args: ActionEventArgs): void {
+    if (args.requestType === 'reorder') {
+      let columnName: string = <string>this.reorderdropdown1.value;
+      let index: number = this.treegrid.getColumnIndexByField(columnName);
+      this.reorderdropdown2.value = index.toString();
+    }
+    /* ===== End for reorder column  ===== */
+  }
 }
