@@ -1,4 +1,5 @@
 <div class="col-lg-9 control-section">
+ 
   <ejs-treegrid
     #treegrid
     [dataSource]="data"
@@ -12,6 +13,7 @@
     allowFiltering="true"
     [pageSettings]="pageSettings"
     [filterSettings]="filterSettings"
+    [selectionSettings]="selectionSettings"
   >
     <e-columns>
       <e-column
@@ -39,7 +41,7 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-sm-6 property-section">
+    <div class="col-lg-3 property-section">
       <div class="property-panel-section">
         <div class="property-panel-header"><h2>Sort Properties</h2></div>
         <table
@@ -103,7 +105,7 @@
       </div>
     </div>
 
-    <div class="col-sm-6 property-section">
+    <div class="col-lg-3 property-section">
       <div class="property-panel-section">
         <div class="property-panel-header"><h2>Filter Properties</h2></div>
         <table
@@ -144,6 +146,73 @@
                   [fields]="ddlfields"
                   value="Parent"
                   (change)="onChange($event)"
+                ></ejs-dropdownlist>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="col-lg-3 property-section">
+      <div class="property-panel-section">
+        <div class="property-panel-header"><h2>Select Row Properties</h2></div>
+        <table
+          id="property"
+          class="property-panel-table"
+          title="Properties"
+          style="width: 50%"
+        >
+          <tr>
+            <td style="width: 50%">
+              <div style="padding-top: 7px">Selection Type</div>
+            </td>
+            <td style="width: 70%; padding-right: 10px">
+              <div>
+                <ejs-dropdownlist
+                  #selectdropdown1
+                  id="element1"
+                  width="110px"
+                  [dataSource]="selectd1data"
+                  [fields]="fields1"
+                  value="Multiple"
+                  (change)="change1($event)"
+                ></ejs-dropdownlist>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 50%">
+              <div>Selection Mode</div>
+            </td>
+            <td style="width: 70%">
+              <div style="padding-right: 10px; padding-bottom: 10px">
+                <ejs-dropdownlist
+                  #selectdropdown2
+                  id="element2"
+                  width="110px"
+                  [dataSource]="selectd2data"
+                  [fields]="fields2"
+                  value="Row"
+                  (change)="change2($event)"
+                ></ejs-dropdownlist>
+              </div>
+            </td>
+          </tr>
+          <tr id="cellselection" style="display: none">
+            <td style="width: 30%">
+              <div>Cell Selection Mode</div>
+            </td>
+            <td style="width: 70%">
+              <div style="padding-right: 10px; padding-bottom: 10px">
+                <ejs-dropdownlist
+                  #selectdropdown3
+                  id="element3"
+                  width="110px"
+                  [dataSource]="selectd3data"
+                  [fields]="fields3"
+                  value="Flow"
+                  (change)="change3($event)"
                 ></ejs-dropdownlist>
               </div>
             </td>
