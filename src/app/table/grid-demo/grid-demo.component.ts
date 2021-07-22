@@ -439,4 +439,21 @@ export class GridDemoComponent implements OnInit {
     this.treegrid.refreshColumns();
   }
   /* ===== End for Cell Alignment  ===== */
+
+  enableDisableGrid() {
+    if (
+      this.treegrid &&
+      this.treegrid.element.classList.contains('disabletreegrid')
+    ) {
+      this.treegrid.element.classList.remove('disabletreegrid');
+      (
+        document.getElementById('TreeGridParent') as HTMLElement
+      ).classList.remove('wrapper');
+    } else if (this.treegrid) {
+      this.treegrid.element.classList.add('disabletreegrid');
+      (document.getElementById('TreeGridParent') as HTMLElement).classList.add(
+        'wrapper'
+      );
+    }
+  }
 }

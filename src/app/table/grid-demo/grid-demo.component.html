@@ -1,4 +1,5 @@
-<div class="col-lg-9 control-section">
+<button ejs-button (click)="enableDisableGrid()"  cssClass="e-flat e-primary" iconCss="e-icons e-play-icon" [isToggle]="true">Enable/Disable Grid</button>
+<div class="col-lg-9 control-section" id="TreeGridParent">
   <ejs-treegrid
     #treegrid
     [dataSource]="data"
