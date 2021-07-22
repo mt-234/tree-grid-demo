@@ -17,7 +17,11 @@ import {
   SortService,
   TreeGridComponent,
 } from '@syncfusion/ej2-angular-treegrid';
-import { ActionEventArgs, QueryCellInfoEventArgs, SortEventArgs } from '@syncfusion/ej2-grids';
+import {
+  ActionEventArgs,
+  QueryCellInfoEventArgs,
+  SortEventArgs,
+} from '@syncfusion/ej2-grids';
 import { sampleData, sortData } from '../../../jsontreegriddata';
 
 @Component({
@@ -120,6 +124,19 @@ export class GridDemoComponent implements OnInit {
   @ViewChild('reorderdropdown2')
   public reorderdropdown2: DropDownListComponent;
   /* ===== End for reorder column  ===== */
+
+  /* ===== Start for Cell Alignment  ===== */
+
+  public cellalignd1data: Object;
+  public cellalignddlfields: Object;
+  public cellalignd2data: Object;
+  public cellalignfields: Object;
+  @ViewChild('cellaligndropdown1')
+  public cellaligndropdown1: DropDownListComponent;
+  @ViewChild('cellaligndropdown2')
+  public cellaligndropdown2: DropDownListComponent;
+
+  /* ===== End for Cell Alignment  ===== */
 
   ngOnInit(): void {
     this.data = sortData;
@@ -251,6 +268,22 @@ export class GridDemoComponent implements OnInit {
         { id: '4', name: '5' },
       ]),
       (this.reorderfields = { text: 'name', value: 'id' });
+
+    // for Cell alignment
+    this.cellalignddlfields = { text: 'name', value: 'id' };
+    (this.cellalignd1data = [
+      { id: 'orderID', name: 'Order ID' },
+      { id: 'Category', name: 'Category' },
+      { id: 'orderDate', name: 'Order Date' },
+      { id: 'units', name: 'Units' },
+    ]),
+      (this.cellalignd2data = [
+        { id: 'Right', name: 'Right' },
+        { id: 'Left', name: 'Left' },
+        { id: 'Center', name: 'Center' },
+        { id: 'Justify', name: 'Justify' },
+      ]),
+      (this.cellalignfields = { text: 'name', value: 'id' });
   }
 
   /* ===== Start for sort ===== */
@@ -384,13 +417,26 @@ export class GridDemoComponent implements OnInit {
 
   /* ===== Start for column color  ===== */
   queryCellInfo(args: QueryCellInfoEventArgs) {
-    console.log('args: ', args);
-    if (
-      args.column.field === 'units'
-    ) {
+    if (args.column.field === 'units') {
       args.cell.setAttribute('style', 'background-color:#7e9c6c;color:white;');
     } else {
       args.cell.setAttribute('style', 'background-color:#a0807b;color:white;');
     }
   }
+
+  /* ===== End for column color  ===== */
+
+  /* ===== Start for Cell Alignment  ===== */
+  public cellalignOnChange(e: ChangeEventArgs): void {
+    let columnName: string = <string>e.value;
+    let alignment: any = this.treegrid.getColumnByField(columnName).textAlign;
+    this.cellaligndropdown2.value = alignment;
+  }
+  public cellalignChange(e: ChangeEventArgs): void {
+    let alignment: any = e.value;
+    let columnName: string = <string>this.cellaligndropdown1.value;
+    this.treegrid.getColumnByField(columnName).textAlign = alignment;
+    this.treegrid.refreshColumns();
+  }
+  /* ===== End for Cell Alignment  ===== */
 }

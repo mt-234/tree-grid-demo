@@ -46,6 +46,7 @@
         headerText="Category"
         width="150"
         [validationRules]="categorynamerules"
+        textAlign="Right"
       ></e-column>
       <e-column
         field="orderDate"
@@ -314,6 +315,55 @@
                   [fields]="reorderfields"
                   value="0"
                   (change)="columnReorderchange($event)"
+                ></ejs-dropdownlist>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="col-lg-3 property-section">
+      <div class="property-panel-section">
+        <div class="property-panel-header"><h2>Cell Alignment Properties</h2></div>
+        <table
+          id="property"
+          class="property-panel-table"
+          title="Properties"
+          style="width: 50%"
+        >
+          <tr style="height: 50px">
+            <td style="width: 20%">
+              <div style="padding-top: 10px">Column</div>
+            </td>
+            <td style="width: 80%; padding-right: 10px">
+              <div>
+                <ejs-dropdownlist
+                  #cellaligndropdown1
+                  id="ddlelement"
+                  width="100px"
+                  [dataSource]="cellalignd1data"
+                  [fields]="cellalignddlfields"
+                  value="orderID"
+                  (change)="cellalignOnChange($event)"
+                ></ejs-dropdownlist>
+              </div>
+            </td>
+          </tr>
+          <tr style="height: 50px">
+            <td style="width: 50%">
+              <div>Cell Alignment</div>
+            </td>
+            <td style="width: 50%; padding: 10px 10px 10px 0px">
+              <div>
+                <ejs-dropdownlist
+                  #cellaligndropdown2
+                  id="element"
+                  width="100px"
+                  [dataSource]="cellalignd2data"
+                  [fields]="cellalignfields"
+                  value="Right"
+                  (change)="cellalignChange($event)"
                 ></ejs-dropdownlist>
               </div>
             </td>
