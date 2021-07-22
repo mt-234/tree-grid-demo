@@ -140,7 +140,6 @@ export class GridDemoComponent implements OnInit {
 
   ngOnInit(): void {
     this.data = sortData;
-    console.log('this.data: ', this.data);
     // for sort
     this.sortSettings = {
       columns: [
@@ -218,7 +217,6 @@ export class GridDemoComponent implements OnInit {
         column: Column;
         element: HTMLElement;
       }) => {
-        console.log('args.rowData: ', args.rowData);
         this.autoCompleteObj = new AutoComplete({
           dataSource: <{ key: string; value: any }[]>(
             this.treegrid.grid.dataSource
@@ -227,7 +225,6 @@ export class GridDemoComponent implements OnInit {
           value: args.rowData[args.column.field],
         });
         this.autoCompleteObj.appendTo(args.element);
-        console.log('this.autoCompleteObj: ', this.autoCompleteObj);
       },
     };
     // for context Menu
