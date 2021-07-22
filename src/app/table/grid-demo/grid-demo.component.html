@@ -16,13 +16,13 @@
     [allowRowDragAndDrop]="true"
     [editSettings]="editSettings"
     [toolbar]="toolbar"
-    allowExcelExport='true' 
-    allowPdfExport='true' 
+    allowExcelExport="true"
+    allowPdfExport="true"
     [contextMenuItems]="contextMenuItems"
-    [allowResizing]=true
-    allowReordering='true'
+    [allowResizing]="true"
+    allowReordering="true"
     (actionComplete)="actionComplete($event)"
-    (queryCellInfo)='queryCellInfo($event)'
+    (queryCellInfo)="queryCellInfo($event)"
   >
     <e-columns>
       <e-column
@@ -67,6 +67,26 @@
         [validationRules]="unitrules"
       ></e-column>
     </e-columns>
+    <e-aggregates>
+      <e-aggregate>
+        <e-columns>
+          <e-column field="units" type="sum">
+            <ng-template #footerTemplate let-data
+              >Sum of Units: {{ data.sum }}</ng-template
+            >
+          </e-column>
+        </e-columns>
+      </e-aggregate>
+      <e-aggregate>
+        <e-columns>
+          <e-column field="units" type="max">
+            <ng-template #footerTemplate let-data
+              >Maximum Unit Value: {{ data.max }}</ng-template
+            >
+          </e-column>
+        </e-columns>
+      </e-aggregate>
+    </e-aggregates>
   </ejs-treegrid>
 </div>
 <div class="container">
@@ -253,30 +273,53 @@
 
     <div class="col-lg-3 property-section">
       <div class="property-panel-section">
-                  <div class="property-panel-header"><h2>Re-order Column Properties</h2> </div>
-          <table id="property" class="property-panel-table" title="Properties" style="width: 50%">
-              <tr style="height: 50px">
-                  <td style="width: 30%">
-                      <div style="padding-top: 10px">Column</div>
-                  </td>
-                  <td style="width: 30%;padding-right: 10px">
-                      <div>
-                              <ejs-dropdownlist #reorderdropdown1 id='ddlelement' width= '110px' [dataSource]='reorderd1data' [fields]='reorderddlfields' value='orderID' (change)="onColumnReorderChange($event)" ></ejs-dropdownlist>
-                          </div>
-                  </td>
-              </tr>
-              <tr style="height: 50px">
-                  <td style="width: 30%">
-                      <div>Column Index</div>
-                  </td>
-                  <td style="width: 30%;padding: 10px 10px 10px 0px">
-                      <div>
-                              <ejs-dropdownlist #reorderdropdown2 id='element' width= '110px' [dataSource]='reorderd2data' [fields]='reorderfields' value='0'  (change)="columnReorderchange($event)" ></ejs-dropdownlist>
-                          </div>
-                  </td>
-              </tr>
-          </table>
+        <div class="property-panel-header">
+          <h2>Re-order Column Properties</h2>
+        </div>
+        <table
+          id="property"
+          class="property-panel-table"
+          title="Properties"
+          style="width: 50%"
+        >
+          <tr style="height: 50px">
+            <td style="width: 30%">
+              <div style="padding-top: 10px">Column</div>
+            </td>
+            <td style="width: 30%; padding-right: 10px">
+              <div>
+                <ejs-dropdownlist
+                  #reorderdropdown1
+                  id="ddlelement"
+                  width="110px"
+                  [dataSource]="reorderd1data"
+                  [fields]="reorderddlfields"
+                  value="orderID"
+                  (change)="onColumnReorderChange($event)"
+                ></ejs-dropdownlist>
+              </div>
+            </td>
+          </tr>
+          <tr style="height: 50px">
+            <td style="width: 30%">
+              <div>Column Index</div>
+            </td>
+            <td style="width: 30%; padding: 10px 10px 10px 0px">
+              <div>
+                <ejs-dropdownlist
+                  #reorderdropdown2
+                  id="element"
+                  width="110px"
+                  [dataSource]="reorderd2data"
+                  [fields]="reorderfields"
+                  value="0"
+                  (change)="columnReorderchange($event)"
+                ></ejs-dropdownlist>
+              </div>
+            </td>
+          </tr>
+        </table>
       </div>
-  </div>
+    </div>
   </div>
 </div>

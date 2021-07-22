@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { TreeGridAllModule, TreeGridModule } from '@syncfusion/ej2-angular-treegrid';
+import { AggregateService, TreeGridAllModule, TreeGridModule } from '@syncfusion/ej2-angular-treegrid';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,7 +35,7 @@ import { SparklineAllModule } from '@syncfusion/ej2-angular-charts';
     DatePickerModule, 
     SparklineAllModule, 
   ],
-  providers: [],
+  providers: [AggregateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
