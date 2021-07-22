@@ -5,3 +5,16 @@
 .wrapper {
     cursor: not-allowed;
 }
+.container .row {
+    display: flex;
+    margin-top: 10px;
+}
+.property-section{
+    flex-basis: 100%;
+    text-align: center;
+    /* border: 1px solid rgb(116, 111, 111);  */
+}
+.property-panel-header{
+    font-weight: bold;
+    background-color: #f3f3cbd4;
+}
