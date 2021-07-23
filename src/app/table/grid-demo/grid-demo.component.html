@@ -12,98 +12,6 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-lg-9 col-md-8 control-section" id="TreeGridParent">
-      <ejs-treegrid
-        #treegrid
-        [dataSource]="data"
-        allowPaging="true"
-        childMapping="subtasks"
-        height="275"
-        [treeColumnIndex]="0"
-        allowSorting="true"
-        [sortSettings]="sortSettings"
-        (actionComplete)="sort($event)"
-        allowFiltering="true"
-        [pageSettings]="pageSettings"
-        [filterSettings]="filterSettings"
-        [selectionSettings]="selectionSettings"
-        [allowRowDragAndDrop]="true"
-        [editSettings]="editSettings"
-        [toolbar]="toolbar"
-        allowExcelExport="true"
-        allowPdfExport="true"
-        [contextMenuItems]="contextMenuItems"
-        [allowResizing]="true"
-        allowReordering="true"
-        (actionComplete)="actionComplete($event)"
-        (queryCellInfo)="queryCellInfo($event)"
-      >
-        <e-columns>
-          <e-column
-            field="orderID"
-            headerText="Order ID"
-            width=""
-            isPrimaryKey="true"
-            textAlign="Right"
-            [edit]="numericParams"
-            [validationRules]="orderidrules"
-          ></e-column>
-          <e-column
-            field="orderName"
-            headerText="Order Name"
-            width=""
-            [validationRules]="ordernamerules"
-            [edit]="dpParams"
-          ></e-column>
-          <e-column
-            field="Category"
-            headerText="Category"
-            width=""
-            [validationRules]="categorynamerules"
-            textAlign="Right"
-          ></e-column>
-          <e-column
-            field="orderDate"
-            headerText="Order Date"
-            width=""
-            format="yMd"
-            type="date"
-            textAlign="Right"
-            editType="datepickeredit"
-            [validationRules]="startdaterules"
-          ></e-column>
-          <e-column
-            field="units"
-            headerText="Units"
-            width=""
-            textAlign="Right"
-            editType="numericedit"
-            [edit]="numericParams"
-            [validationRules]="unitrules"
-          ></e-column>
-        </e-columns>
-        <e-aggregates>
-          <e-aggregate>
-            <e-columns>
-              <e-column field="units" type="sum">
-                <ng-template #footerTemplate let-data
-                  >Sum of Units: {{ data.sum }}</ng-template
-                >
-              </e-column>
-            </e-columns>
-          </e-aggregate>
-          <e-aggregate>
-            <e-columns>
-              <e-column field="units" type="max">
-                <ng-template #footerTemplate let-data
-                  >Maximum Unit Value: {{ data.max }}</ng-template
-                >
-              </e-column>
-            </e-columns>
-          </e-aggregate>
-        </e-aggregates>
-      </ejs-treegrid>
-    </div>
     <div class="col-lg-3 col-md-4">
       <div class="row">
         <ejs-accordion
@@ -417,5 +325,98 @@
         </ejs-accordion>
       </div>
     </div>
+    <div class="col-lg-9 col-md-8 control-section" id="TreeGridParent">
+      <ejs-treegrid
+        #treegrid
+        [dataSource]="data"
+        allowPaging="true"
+        childMapping="subtasks"
+        height="275"
+        [treeColumnIndex]="0"
+        allowSorting="true"
+        [sortSettings]="sortSettings"
+        (actionComplete)="sort($event)"
+        allowFiltering="true"
+        [pageSettings]="pageSettings"
+        [filterSettings]="filterSettings"
+        [selectionSettings]="selectionSettings"
+        [allowRowDragAndDrop]="true"
+        [editSettings]="editSettings"
+        [toolbar]="toolbar"
+        allowExcelExport="true"
+        allowPdfExport="true"
+        [contextMenuItems]="contextMenuItems"
+        [allowResizing]="true"
+        allowReordering="true"
+        (actionComplete)="actionComplete($event)"
+        (queryCellInfo)="queryCellInfo($event)"
+      >
+        <e-columns>
+          <e-column
+            field="orderID"
+            headerText="Order ID"
+            width=""
+            isPrimaryKey="true"
+            textAlign="Right"
+            [edit]="numericParams"
+            [validationRules]="orderidrules"
+          ></e-column>
+          <e-column
+            field="orderName"
+            headerText="Order Name"
+            width=""
+            [validationRules]="ordernamerules"
+            [edit]="dpParams"
+          ></e-column>
+          <e-column
+            field="Category"
+            headerText="Category"
+            width=""
+            [validationRules]="categorynamerules"
+            textAlign="Right"
+          ></e-column>
+          <e-column
+            field="orderDate"
+            headerText="Order Date"
+            width=""
+            format="yMd"
+            type="date"
+            textAlign="Right"
+            editType="datepickeredit"
+            [validationRules]="startdaterules"
+          ></e-column>
+          <e-column
+            field="units"
+            headerText="Units"
+            width=""
+            textAlign="Right"
+            editType="numericedit"
+            [edit]="numericParams"
+            [validationRules]="unitrules"
+          ></e-column>
+        </e-columns>
+        <e-aggregates>
+          <e-aggregate>
+            <e-columns>
+              <e-column field="units" type="sum">
+                <ng-template #footerTemplate let-data
+                  >Sum of Units: {{ data.sum }}</ng-template
+                >
+              </e-column>
+            </e-columns>
+          </e-aggregate>
+          <e-aggregate>
+            <e-columns>
+              <e-column field="units" type="max">
+                <ng-template #footerTemplate let-data
+                  >Maximum Unit Value: {{ data.max }}</ng-template
+                >
+              </e-column>
+            </e-columns>
+          </e-aggregate>
+        </e-aggregates>
+      </ejs-treegrid>
+    </div>
+    
   </div>
 </div>
