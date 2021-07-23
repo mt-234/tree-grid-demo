@@ -1,43 +1,25 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CheckBoxComponent } from '@syncfusion/ej2-angular-buttons';
 import {
-  DropDownListComponent,
-  ChangeEventArgs,
-  AutoComplete,
+  AutoComplete, ChangeEventArgs, DropDownListComponent
 } from '@syncfusion/ej2-angular-dropdowns';
 import {
-  AccordionComponent,
+  AccordionComponent
 } from '@syncfusion/ej2-angular-navigations';
 import {
-  Column,
-  ContextMenuService,
-  EditService,
-  EditSettingsModel,
-  ExcelExportService,
-  PageService,
-  PdfExportService,
-  ResizeService,
-  SortService,
-  TreeGridComponent,
+  Column, EditSettingsModel, TreeGridComponent
 } from '@syncfusion/ej2-angular-treegrid';
 import {
   ActionEventArgs,
   QueryCellInfoEventArgs,
-  SortEventArgs,
+  SortEventArgs
 } from '@syncfusion/ej2-grids';
-import { sampleData, sortData } from '../../../jsontreegriddata';
-import {ExpandEventArgs, AccordionClickArgs} from '@syncfusion/ej2-navigations';
+import { AccordionClickArgs, ExpandEventArgs } from '@syncfusion/ej2-navigations';
+import { sortData } from '../../../jsontreegriddata';
 @Component({
   selector: 'app-grid-demo',
   templateUrl: './grid-demo.component.html',
   providers: [
-    PageService,
-    SortService,
-    ResizeService,
-    EditService,
-    ExcelExportService,
-    PdfExportService,
-    ContextMenuService,
   ],
   styleUrls: ['./grid-demo.component.css'],
 })
@@ -430,7 +412,7 @@ export class GridDemoComponent implements OnInit {
   /* ===== Start for column color  ===== */
   queryCellInfo(args: QueryCellInfoEventArgs) {
     if (args.column.field === 'units') {
-      args.cell.setAttribute('style', 'background-color:#e0e0e0;color:#000;');
+      args.cell.setAttribute('style', 'background-color:#efd3d345;color:#000;');
     }
     //  else {
     //   args.cell.setAttribute('style', 'background-color:#a0807b;color:white;');
