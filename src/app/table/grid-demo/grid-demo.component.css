@@ -18,3 +18,7 @@
     font-weight: bold;
     background-color: #f3f3cbd4;
 }
+.e-gridcontent .e-content {
+    height: 275px !important;
+}
+

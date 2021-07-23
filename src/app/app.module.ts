@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GridDemoComponent } from './table/grid-demo/grid-demo.component';
 import { NumericTextBoxAllModule } from '@syncfusion/ej2-angular-inputs';
-import { ToolbarModule } from '@syncfusion/ej2-angular-navigations';
+import { AccordionModule, ToolbarModule } from '@syncfusion/ej2-angular-navigations';
 import { DropDownListAllModule, MultiSelectAllModule } from '@syncfusion/ej2-angular-dropdowns';
 import { ButtonAllModule , CheckBoxAllModule} from '@syncfusion/ej2-angular-buttons';
 import { DialogModule } from '@syncfusion/ej2-angular-popups';
@@ -34,6 +34,7 @@ import { SparklineAllModule } from '@syncfusion/ej2-angular-charts';
     FormsModule, 
     DatePickerModule, 
     SparklineAllModule, 
+    AccordionModule
   ],
   providers: [AggregateService],
   bootstrap: [AppComponent]

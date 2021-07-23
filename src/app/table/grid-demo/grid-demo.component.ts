@@ -6,6 +6,9 @@ import {
   AutoComplete,
 } from '@syncfusion/ej2-angular-dropdowns';
 import {
+  AccordionComponent,
+} from '@syncfusion/ej2-angular-navigations';
+import {
   Column,
   ContextMenuService,
   EditService,
@@ -23,7 +26,7 @@ import {
   SortEventArgs,
 } from '@syncfusion/ej2-grids';
 import { sampleData, sortData } from '../../../jsontreegriddata';
-
+import {ExpandEventArgs, AccordionClickArgs} from '@syncfusion/ej2-navigations';
 @Component({
   selector: 'app-grid-demo',
   templateUrl: './grid-demo.component.html',
@@ -137,6 +140,18 @@ export class GridDemoComponent implements OnInit {
   public cellaligndropdown2: DropDownListComponent;
 
   /* ===== End for Cell Alignment  ===== */
+
+  /* ===== Start for Accordion  ===== */
+
+  @ViewChild('element') acrdnInstance: AccordionComponent;
+  public clickEle: HTMLElement;
+  public clicked(e: AccordionClickArgs) {
+    this.clickEle = (e.originalEvent.target as Element).closest(
+      '.e-acrdn-header'
+    );
+  }
+
+  /* ===== End for Accordion  ===== */
 
   ngOnInit(): void {
     this.data = sortData;
@@ -415,10 +430,11 @@ export class GridDemoComponent implements OnInit {
   /* ===== Start for column color  ===== */
   queryCellInfo(args: QueryCellInfoEventArgs) {
     if (args.column.field === 'units') {
-      args.cell.setAttribute('style', 'background-color:#7e9c6c;color:white;');
-    } else {
-      args.cell.setAttribute('style', 'background-color:#a0807b;color:white;');
+      args.cell.setAttribute('style', 'background-color:#e0e0e0;color:#000;');
     }
+    //  else {
+    //   args.cell.setAttribute('style', 'background-color:#a0807b;color:white;');
+    // }
   }
 
   /* ===== End for column color  ===== */
@@ -451,6 +467,21 @@ export class GridDemoComponent implements OnInit {
       (document.getElementById('TreeGridParent') as HTMLElement).classList.add(
         'wrapper'
       );
+    }
+  }
+
+  public beforeExpand(e: ExpandEventArgs): void {
+    let expandCount: number = this.acrdnInstance.element.querySelectorAll(
+      '.e-selected'
+    ).length;
+    let ele: Element = this.acrdnInstance.element.querySelectorAll(
+      '.e-selected'
+    )[0];
+    if (ele) {
+      ele = ele.firstChild as Element;
+    }
+    if (expandCount === 1 && ele === this.clickEle) {
+      e.cancel = true;
     }
   }
 }

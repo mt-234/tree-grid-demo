@@ -1,375 +1,420 @@
-<button ejs-button (click)="enableDisableGrid()"  cssClass="e-flat e-primary" iconCss="e-icons e-play-icon" [isToggle]="true">Enable/Disable Grid</button>
-<div class="col-lg-9 control-section" id="TreeGridParent">
-  <ejs-treegrid
-    #treegrid
-    [dataSource]="data"
-    allowPaging="true"
-    childMapping="subtasks"
-    height="350"
-    [treeColumnIndex]="0"
-    allowSorting="true"
-    [sortSettings]="sortSettings"
-    (actionComplete)="sort($event)"
-    allowFiltering="true"
-    [pageSettings]="pageSettings"
-    [filterSettings]="filterSettings"
-    [selectionSettings]="selectionSettings"
-    [allowRowDragAndDrop]="true"
-    [editSettings]="editSettings"
-    [toolbar]="toolbar"
-    allowExcelExport="true"
-    allowPdfExport="true"
-    [contextMenuItems]="contextMenuItems"
-    [allowResizing]="true"
-    allowReordering="true"
-    (actionComplete)="actionComplete($event)"
-    (queryCellInfo)="queryCellInfo($event)"
-  >
-    <e-columns>
-      <e-column
-        field="orderID"
-        headerText="Order ID"
-        width="70"
-        isPrimaryKey="true"
-        textAlign="Right"
-        [edit]="numericParams"
-        [validationRules]="orderidrules"
-      ></e-column>
-      <e-column
-        field="orderName"
-        headerText="Order Name"
-        width="200"
-        [validationRules]="ordernamerules"
-        [edit]="dpParams"
-      ></e-column>
-      <e-column
-        field="Category"
-        headerText="Category"
-        width="150"
-        [validationRules]="categorynamerules"
-        textAlign="Right"
-      ></e-column>
-      <e-column
-        field="orderDate"
-        headerText="Order Date"
-        width="130"
-        format="yMd"
-        type="date"
-        textAlign="Right"
-        editType="datepickeredit"
-        [validationRules]="startdaterules"
-      ></e-column>
-      <e-column
-        field="units"
-        headerText="Units"
-        width="120"
-        textAlign="Right"
-        editType="numericedit"
-        [edit]="numericParams"
-        [validationRules]="unitrules"
-      ></e-column>
-    </e-columns>
-    <e-aggregates>
-      <e-aggregate>
-        <e-columns>
-          <e-column field="units" type="sum">
-            <ng-template #footerTemplate let-data
-              >Sum of Units: {{ data.sum }}</ng-template
-            >
-          </e-column>
-        </e-columns>
-      </e-aggregate>
-      <e-aggregate>
-        <e-columns>
-          <e-column field="units" type="max">
-            <ng-template #footerTemplate let-data
-              >Maximum Unit Value: {{ data.max }}</ng-template
-            >
-          </e-column>
-        </e-columns>
-      </e-aggregate>
-    </e-aggregates>
-  </ejs-treegrid>
-</div>
-<div class="container">
+
+
+<button
+  ejs-button
+  (click)="enableDisableGrid()"
+  cssClass="e-flat e-primary"
+  iconCss="e-icons e-play-icon"
+  [isToggle]="true"
+>
+  Enable/Disable Grid
+</button>
+
+<div class="container-fluid">
   <div class="row">
-    <div class="col-lg-3 property-section">
-      <div class="property-panel-section">
-        <div class="property-panel-header">Sort Properties</div>
-        <table
-          id="property"
-          class="property-panel-table"
-          title="Properties"
-          style="width: 100%"
-        >
-          <tr>
-            <td style="width: 70%">
-              <div>Order Name</div>
-            </td>
-            <td style="width: 30%; padding: 10px 10px 10px 0px">
-              <div class="col-md-6">
-                <ejs-checkbox
-                  #orderName
-                  [checked]="true"
-                  (change)="onClick1($event)"
-                ></ejs-checkbox>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td style="width: 70%">
-              <div>Category</div>
-            </td>
-            <td style="width: 30%; padding: 10px 10px 10px 0px">
-              <div class="col-md-6">
-                <ejs-checkbox
-                  #category
-                  [checked]="true"
-                  (change)="onClick2($event)"
-                ></ejs-checkbox>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td style="width: 70%">
-              <div>Order Date</div>
-            </td>
-            <td style="width: 30%; padding: 10px 10px 10px 0px">
-              <div class="col-md-6">
-                <ejs-checkbox
-                  #orderDate
-                  (change)="onClick3($event)"
-                ></ejs-checkbox>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td style="width: 70%">
-              <div>Units</div>
-            </td>
-            <td style="width: 30%; padding: 10px 10px 10px 0px">
-              <div class="col-md-6">
-                <ejs-checkbox #units (change)="onClick4($event)"></ejs-checkbox>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </div>
+    <div class="col-lg-9 col-md-8 control-section" id="TreeGridParent">
+      <ejs-treegrid
+        #treegrid
+        [dataSource]="data"
+        allowPaging="true"
+        childMapping="subtasks"
+        height="275"
+        [treeColumnIndex]="0"
+        allowSorting="true"
+        [sortSettings]="sortSettings"
+        (actionComplete)="sort($event)"
+        allowFiltering="true"
+        [pageSettings]="pageSettings"
+        [filterSettings]="filterSettings"
+        [selectionSettings]="selectionSettings"
+        [allowRowDragAndDrop]="true"
+        [editSettings]="editSettings"
+        [toolbar]="toolbar"
+        allowExcelExport="true"
+        allowPdfExport="true"
+        [contextMenuItems]="contextMenuItems"
+        [allowResizing]="true"
+        allowReordering="true"
+        (actionComplete)="actionComplete($event)"
+        (queryCellInfo)="queryCellInfo($event)"
+      >
+        <e-columns>
+          <e-column
+            field="orderID"
+            headerText="Order ID"
+            width=""
+            isPrimaryKey="true"
+            textAlign="Right"
+            [edit]="numericParams"
+            [validationRules]="orderidrules"
+          ></e-column>
+          <e-column
+            field="orderName"
+            headerText="Order Name"
+            width=""
+            [validationRules]="ordernamerules"
+            [edit]="dpParams"
+          ></e-column>
+          <e-column
+            field="Category"
+            headerText="Category"
+            width=""
+            [validationRules]="categorynamerules"
+            textAlign="Right"
+          ></e-column>
+          <e-column
+            field="orderDate"
+            headerText="Order Date"
+            width=""
+            format="yMd"
+            type="date"
+            textAlign="Right"
+            editType="datepickeredit"
+            [validationRules]="startdaterules"
+          ></e-column>
+          <e-column
+            field="units"
+            headerText="Units"
+            width=""
+            textAlign="Right"
+            editType="numericedit"
+            [edit]="numericParams"
+            [validationRules]="unitrules"
+          ></e-column>
+        </e-columns>
+        <e-aggregates>
+          <e-aggregate>
+            <e-columns>
+              <e-column field="units" type="sum">
+                <ng-template #footerTemplate let-data
+                  >Sum of Units: {{ data.sum }}</ng-template
+                >
+              </e-column>
+            </e-columns>
+          </e-aggregate>
+          <e-aggregate>
+            <e-columns>
+              <e-column field="units" type="max">
+                <ng-template #footerTemplate let-data
+                  >Maximum Unit Value: {{ data.max }}</ng-template
+                >
+              </e-column>
+            </e-columns>
+          </e-aggregate>
+        </e-aggregates>
+      </ejs-treegrid>
     </div>
-
-    <div class="col-lg-3 property-section">
-      <div class="property-panel-section">
-        <div class="property-panel-header">Filter Properties</div>
-        <table
-          id="property"
-          class="property-panel-table"
-          title="Properties"
-          style="width: 100%"
+    <div class="col-lg-3 col-md-4">
+      <div class="row">
+        <ejs-accordion
+          #element
+          expandMode="Single"
+          (expanding)="beforeExpand($event)"
+          (clicked)="clicked($event)"
         >
-          <tr style="height: 50px">
-            <td>
-              <div style="width: 100px">Filter Type</div>
-            </td>
-            <td style="width: 50%; padding-right: 10px">
-              <div>
-                <ejs-dropdownlist
-                  #dropdown2
-                  id="typeelement"
-                  width="100px"
-                  [dataSource]="d2data"
-                  [fields]="typefields"
-                  value="Menu"
-                  (change)="change($event)"
-                ></ejs-dropdownlist>
-              </div>
-            </td>
-          </tr>
-          <tr style="height: 50px">
-            <td>
-              <div style="width: 100px">Hierarchy Mode</div>
-            </td>
-            <td style="width: 50%; padding-right: 10px">
-              <div>
-                <ejs-dropdownlist
-                  #dropdown1
-                  id="ddlelement"
-                  width="100px"
-                  [dataSource]="d1data"
-                  [fields]="ddlfields"
-                  value="Parent"
-                  (change)="onChange($event)"
-                ></ejs-dropdownlist>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
+          <e-accordionitems>
+            <e-accordionitem expanded="true">
+              <ng-template #header>
+                <div>Sort Properties</div>
+              </ng-template>
+              <ng-template #content>
+                <div>
+                  <table
+                    id="property"
+                    class="property-panel-table"
+                    title="Properties"
+                    style="width: 100%"
+                  >
+                    <tr>
+                      <td>
+                        <div>Order Name</div>
+                      </td>
+                      <td>
+                        <div class="col-md-6">
+                          <ejs-checkbox
+                            #orderName
+                            [checked]="true"
+                            (change)="onClick1($event)"
+                          ></ejs-checkbox>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div>Category</div>
+                      </td>
+                      <td>
+                        <div class="col-md-6">
+                          <ejs-checkbox
+                            #category
+                            [checked]="true"
+                            (change)="onClick2($event)"
+                          ></ejs-checkbox>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div>Order Date</div>
+                      </td>
+                      <td>
+                        <div class="col-md-6">
+                          <ejs-checkbox
+                            #orderDate
+                            (change)="onClick3($event)"
+                          ></ejs-checkbox>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div>Units</div>
+                      </td>
+                      <td>
+                        <div class="col-md-6">
+                          <ejs-checkbox
+                            #units
+                            (change)="onClick4($event)"
+                          ></ejs-checkbox>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </ng-template>
+            </e-accordionitem>
 
-    <div class="col-lg-3 property-section">
-      <div class="property-panel-section">
-        <div class="property-panel-header">Select Row Properties</div>
-        <table
-          id="property"
-          class="property-panel-table"
-          title="Properties"
-          style="width: 100%"
-        >
-          <tr>
-            <td style="width: 50%">
-              <div style="padding-top: 7px">Selection Type</div>
-            </td>
-            <td style="width: 70%; padding-right: 10px">
-              <div>
-                <ejs-dropdownlist
-                  #selectdropdown1
-                  id="element1"
-                  width="110px"
-                  [dataSource]="selectd1data"
-                  [fields]="fields1"
-                  value="Multiple"
-                  (change)="change1($event)"
-                ></ejs-dropdownlist>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td style="width: 50%">
-              <div>Selection Mode</div>
-            </td>
-            <td style="width: 70%">
-              <div style="padding-right: 10px; padding-bottom: 10px">
-                <ejs-dropdownlist
-                  #selectdropdown2
-                  id="element2"
-                  width="110px"
-                  [dataSource]="selectd2data"
-                  [fields]="fields2"
-                  value="Row"
-                  (change)="change2($event)"
-                ></ejs-dropdownlist>
-              </div>
-            </td>
-          </tr>
-          <tr id="cellselection" style="display: none">
-            <td style="width: 30%">
-              <div>Cell Selection Mode</div>
-            </td>
-            <td style="width: 70%">
-              <div style="padding-right: 10px; padding-bottom: 10px">
-                <ejs-dropdownlist
-                  #selectdropdown3
-                  id="element3"
-                  width="110px"
-                  [dataSource]="selectd3data"
-                  [fields]="fields3"
-                  value="Flow"
-                  (change)="change3($event)"
-                ></ejs-dropdownlist>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
+            <e-accordionitem>
+              <ng-template #header>
+                <div>Filter Properties</div>
+              </ng-template>
+              <ng-template #content>
+                <div>
+                  <table
+                    id="property"
+                    class="property-panel-table"
+                    title="Properties"
+                    style="width: 100%"
+                  >
+                    <tr>
+                      <td>
+                        <div style="width: 100px">Filter Type</div>
+                      </td>
+                      <td>
+                        <div>
+                          <ejs-dropdownlist
+                            #dropdown2
+                            id="typeelement"
+                            width="100px"
+                            [dataSource]="d2data"
+                            [fields]="typefields"
+                            value="Menu"
+                            (change)="change($event)"
+                          ></ejs-dropdownlist>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div style="width: 100px">Hierarchy Mode</div>
+                      </td>
+                      <td>
+                        <div>
+                          <ejs-dropdownlist
+                            #dropdown1
+                            id="ddlelement"
+                            width="100px"
+                            [dataSource]="d1data"
+                            [fields]="ddlfields"
+                            value="Parent"
+                            (change)="onChange($event)"
+                          ></ejs-dropdownlist>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </ng-template>
+            </e-accordionitem>
 
-    <div class="col-lg-3 property-section">
-      <div class="property-panel-section">
-        <div class="property-panel-header">
-          Re-order Column Properties
-        </div>
-        <table
-          id="property"
-          class="property-panel-table"
-          title="Properties"
-          style="width: 100%"
-        >
-          <tr style="height: 50px">
-            <td style="width: 30%">
-              <div style="padding-top: 10px">Column</div>
-            </td>
-            <td style="width: 30%; padding-right: 10px">
-              <div>
-                <ejs-dropdownlist
-                  #reorderdropdown1
-                  id="ddlelement"
-                  width="110px"
-                  [dataSource]="reorderd1data"
-                  [fields]="reorderddlfields"
-                  value="orderID"
-                  (change)="onColumnReorderChange($event)"
-                ></ejs-dropdownlist>
-              </div>
-            </td>
-          </tr>
-          <tr style="height: 50px">
-            <td style="width: 30%">
-              <div>Column Index</div>
-            </td>
-            <td style="width: 30%; padding: 10px 10px 10px 0px">
-              <div>
-                <ejs-dropdownlist
-                  #reorderdropdown2
-                  id="element"
-                  width="110px"
-                  [dataSource]="reorderd2data"
-                  [fields]="reorderfields"
-                  value="0"
-                  (change)="columnReorderchange($event)"
-                ></ejs-dropdownlist>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
+            <e-accordionitem>
+              <ng-template #header>
+                <div>Select Row Properties</div>
+              </ng-template>
+              <ng-template #content>
+                <div>
+                  <table
+                    id="property"
+                    class="property-panel-table"
+                    title="Properties"
+                    style="width: 100%"
+                  >
+                    <tr>
+                      <td>
+                        <div style="padding-top: 7px">Selection Type</div>
+                      </td>
+                      <td>
+                        <div>
+                          <ejs-dropdownlist
+                            #selectdropdown1
+                            id="element1"
+                            width="110px"
+                            [dataSource]="selectd1data"
+                            [fields]="fields1"
+                            value="Multiple"
+                            (change)="change1($event)"
+                          ></ejs-dropdownlist>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div>Selection Mode</div>
+                      </td>
+                      <td>
+                        <div style="padding-right: 10px; padding-bottom: 10px">
+                          <ejs-dropdownlist
+                            #selectdropdown2
+                            id="element2"
+                            width="110px"
+                            [dataSource]="selectd2data"
+                            [fields]="fields2"
+                            value="Row"
+                            (change)="change2($event)"
+                          ></ejs-dropdownlist>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr id="cellselection" style="display: none">
+                      <td>
+                        <div>Cell Selection Mode</div>
+                      </td>
+                      <td>
+                        <div style="padding-right: 10px; padding-bottom: 10px">
+                          <ejs-dropdownlist
+                            #selectdropdown3
+                            id="element3"
+                            width="110px"
+                            [dataSource]="selectd3data"
+                            [fields]="fields3"
+                            value="Flow"
+                            (change)="change3($event)"
+                          ></ejs-dropdownlist>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </ng-template>
+            </e-accordionitem>
 
-    <div class="col-lg-3 property-section">
-      <div class="property-panel-section">
-        <div class="property-panel-header">Cell Alignment Properties</div>
-        <table
-          id="property"
-          class="property-panel-table"
-          title="Properties"
-          style="width: 100%"
-        >
-          <tr style="height: 50px">
-            <td style="width: 20%">
-              <div style="padding-top: 10px">Column</div>
-            </td>
-            <td style="width: 80%; padding-right: 10px">
-              <div>
-                <ejs-dropdownlist
-                  #cellaligndropdown1
-                  id="ddlelement"
-                  width="100px"
-                  [dataSource]="cellalignd1data"
-                  [fields]="cellalignddlfields"
-                  value="orderID"
-                  (change)="cellalignOnChange($event)"
-                ></ejs-dropdownlist>
-              </div>
-            </td>
-          </tr>
-          <tr style="height: 50px">
-            <td style="width: 50%">
-              <div>Cell Alignment</div>
-            </td>
-            <td style="width: 50%; padding: 10px 10px 10px 0px">
-              <div>
-                <ejs-dropdownlist
-                  #cellaligndropdown2
-                  id="element"
-                  width="100px"
-                  [dataSource]="cellalignd2data"
-                  [fields]="cellalignfields"
-                  value="Right"
-                  (change)="cellalignChange($event)"
-                ></ejs-dropdownlist>
-              </div>
-            </td>
-          </tr>
-        </table>
+            <e-accordionitem>
+              <ng-template #header>
+                <div>Re-order Column Properties</div>
+              </ng-template>
+              <ng-template #content>
+                <div>
+                  <table
+                    id="property"
+                    class="property-panel-table"
+                    title="Properties"
+                    style="width: 100%"
+                  >
+                    <tr>
+                      <td>
+                        <div style="padding-top: 10px">Column</div>
+                      </td>
+                      <td>
+                        <div>
+                          <ejs-dropdownlist
+                            #reorderdropdown1
+                            id="ddlelement"
+                            width="110px"
+                            [dataSource]="reorderd1data"
+                            [fields]="reorderddlfields"
+                            value="orderID"
+                            (change)="onColumnReorderChange($event)"
+                          ></ejs-dropdownlist>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div>Column Index</div>
+                      </td>
+                      <td>
+                        <div>
+                          <ejs-dropdownlist
+                            #reorderdropdown2
+                            id="element"
+                            width="110px"
+                            [dataSource]="reorderd2data"
+                            [fields]="reorderfields"
+                            value="0"
+                            (change)="columnReorderchange($event)"
+                          ></ejs-dropdownlist>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </ng-template>
+            </e-accordionitem>
+
+            <e-accordionitem>
+              <ng-template #header>
+                <div>Cell Alignment Properties</div>
+              </ng-template>
+              <ng-template #content>
+                <div>
+                  <table
+                    id="property"
+                    class="property-panel-table"
+                    title="Properties"
+                    style="width: 100%"
+                  >
+                    <tr>
+                      <td>
+                        <div style="padding-top: 10px">Column</div>
+                      </td>
+                      <td>
+                        <div>
+                          <ejs-dropdownlist
+                            #cellaligndropdown1
+                            id="ddlelement"
+                            width="100px"
+                            [dataSource]="cellalignd1data"
+                            [fields]="cellalignddlfields"
+                            value="orderID"
+                            (change)="cellalignOnChange($event)"
+                          ></ejs-dropdownlist>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div>Cell Alignment</div>
+                      </td>
+                      <td>
+                        <div>
+                          <ejs-dropdownlist
+                            #cellaligndropdown2
+                            id="element"
+                            width="100px"
+                            [dataSource]="cellalignd2data"
+                            [fields]="cellalignfields"
+                            value="Right"
+                            (change)="cellalignChange($event)"
+                          ></ejs-dropdownlist>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </ng-template>
+            </e-accordionitem>
+          </e-accordionitems>
+        </ejs-accordion>
       </div>
     </div>
   </div>
