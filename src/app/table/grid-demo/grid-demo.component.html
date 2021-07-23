@@ -389,14 +389,15 @@
             field="units"
             headerText="Units"
             width=""
+            headerTextAlign="Left"
             textAlign="Right"
             editType="numericedit"
             [edit]="numericParams"
             [validationRules]="unitrules"
           ></e-column>
         </e-columns>
-        <e-aggregates>
-          <e-aggregate>
+        <e-aggregates >
+          <e-aggregate [showChildSummary]='false'>
             <e-columns>
               <e-column field="units" type="sum">
                 <ng-template #footerTemplate let-data
@@ -405,7 +406,7 @@
               </e-column>
             </e-columns>
           </e-aggregate>
-          <e-aggregate>
+          <e-aggregate [showChildSummary]='false'>
             <e-columns>
               <e-column field="units" type="max">
                 <ng-template #footerTemplate let-data
