@@ -139,6 +139,8 @@ export class GridDemoComponent implements OnInit {
 
   /* ===== End for Accordion  ===== */
 
+  public allowPaging: boolean = false; 
+
   ngOnInit(): void {
     this.data = sortData;
 
@@ -332,6 +334,14 @@ export class GridDemoComponent implements OnInit {
       ]),
       (this.cellalignfields = { text: 'name', value: 'id' });
   }
+
+  ngAfterViewInit(): void { 
+
+    setTimeout(() => { 
+      this.treegrid.grid.height = 500; 
+      this.allowPaging = true; 
+    }, 2000) 
+  } 
 
   /* ===== Start for sort ===== */
   public onClick1(e: MouseEvent): void {
