@@ -1,26 +1,30 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CheckBoxComponent } from '@syncfusion/ej2-angular-buttons';
 import {
-  AutoComplete, ChangeEventArgs, DropDownListComponent
+  AutoComplete,
+  ChangeEventArgs,
+  DropDownListComponent
 } from '@syncfusion/ej2-angular-dropdowns';
+import { AccordionComponent } from '@syncfusion/ej2-angular-navigations';
 import {
-  AccordionComponent
-} from '@syncfusion/ej2-angular-navigations';
-import {
-  Column, EditSettingsModel, TreeGridComponent
+  Column,
+  EditSettingsModel,
+  TreeGridComponent
 } from '@syncfusion/ej2-angular-treegrid';
 import {
   ActionEventArgs,
   QueryCellInfoEventArgs,
   SortEventArgs
 } from '@syncfusion/ej2-grids';
-import { AccordionClickArgs, ExpandEventArgs } from '@syncfusion/ej2-navigations';
+import {
+  AccordionClickArgs,
+  ExpandEventArgs
+} from '@syncfusion/ej2-navigations';
 import { sortData } from '../../../jsontreegriddata';
 @Component({
   selector: 'app-grid-demo',
   templateUrl: './grid-demo.component.html',
-  providers: [
-  ],
+  providers: [],
   styleUrls: ['./grid-demo.component.css'],
 })
 export class GridDemoComponent implements OnInit {
@@ -137,6 +141,55 @@ export class GridDemoComponent implements OnInit {
 
   ngOnInit(): void {
     this.data = sortData;
+
+    /* increase data*/
+    for (let i = 4; i <= 6000; i++) {
+      let dataStatic = {
+        orderID: i,
+        orderName: `Order ${i}`,
+        orderDate: new Date('26/07/2021'),
+        shippedDate: new Date('30/07/2021'),
+        units: '1120',
+        unitPrice: '33',
+        price: '108.80',
+        Category: 'Crystal',
+        subtasks: [
+          {
+            orderID: parseFloat(`${i}.1`),
+            orderName: 'Lead glassware',
+            Category: 'Solid crystals',
+            orderDate: new Date('26/07/2021'),
+            shippedDate: new Date('30/07/2021'),
+            units: '542',
+            unitPrice: '6',
+            price: '32.52',
+          },
+          {
+            orderID: parseFloat(`${i}.2`),
+            orderName: 'Pharmaceutical Glassware',
+            Category: 'Solid crystals',
+            orderDate: new Date('26/07/2021'),
+            shippedDate: new Date('30/07/2021'),
+            units: '324',
+            unitPrice: '11',
+            price: '35.64',
+          },
+          {
+            orderID: parseFloat(`${i}.3`),
+            orderName: 'Glass beads',
+            Category: 'Solid crystals',
+            units: '254',
+            orderDate: new Date('26/07/2021'),
+            shippedDate: new Date('30/07/2021'),
+            unitPrice: '16',
+            price: '40.64',
+          },
+        ],
+      };
+
+      this.data.push(dataStatic)
+    }
+
     // for sort
     this.sortSettings = {
       columns: [
@@ -146,7 +199,7 @@ export class GridDemoComponent implements OnInit {
     };
 
     // for filtering
-    this.pageSettings = { pageSize: 10, pageSizes: true };
+    this.pageSettings = { pageSize: 1000, pageSizes: true };
     this.filterSettings = { type: 'Menu', hierarchyMode: 'Parent' };
     this.ddlfields = { text: 'mode', value: 'id' };
     this.typefields = { text: 'mode', value: 'id' };
@@ -453,12 +506,10 @@ export class GridDemoComponent implements OnInit {
   }
 
   public beforeExpand(e: ExpandEventArgs): void {
-    let expandCount: number = this.acrdnInstance.element.querySelectorAll(
-      '.e-selected'
-    ).length;
-    let ele: Element = this.acrdnInstance.element.querySelectorAll(
-      '.e-selected'
-    )[0];
+    let expandCount: number =
+      this.acrdnInstance.element.querySelectorAll('.e-selected').length;
+    let ele: Element =
+      this.acrdnInstance.element.querySelectorAll('.e-selected')[0];
     if (ele) {
       ele = ele.firstChild as Element;
     }
