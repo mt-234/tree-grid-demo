@@ -201,7 +201,7 @@ export class GridDemoComponent implements OnInit {
     };
 
     // for filtering
-    this.pageSettings = { pageSize: 1000, pageSizes: true };
+    this.pageSettings = { pageSize: 1000, pageSizes: ["500", "1000", "1500", "All"]  };
     this.filterSettings = { type: 'Menu', hierarchyMode: 'Parent' };
     this.ddlfields = { text: 'mode', value: 'id' };
     this.typefields = { text: 'mode', value: 'id' };
