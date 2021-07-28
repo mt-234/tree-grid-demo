@@ -43,6 +43,7 @@
                             #orderName
                             [checked]="true"
                             (change)="onClick1($event)"
+                            [disabled]="isDisabled"
                           ></ejs-checkbox>
                         </div>
                       </td>
@@ -57,6 +58,7 @@
                             #category
                             [checked]="true"
                             (change)="onClick2($event)"
+                            [disabled]="isDisabled"
                           ></ejs-checkbox>
                         </div>
                       </td>
@@ -70,6 +72,7 @@
                           <ejs-checkbox
                             #orderDate
                             (change)="onClick3($event)"
+                            [disabled]="isDisabled"
                           ></ejs-checkbox>
                         </div>
                       </td>
@@ -83,6 +86,7 @@
                           <ejs-checkbox
                             #units
                             (change)="onClick4($event)"
+                            [disabled]="isDisabled"
                           ></ejs-checkbox>
                         </div>
                       </td>
@@ -118,6 +122,7 @@
                             [fields]="typefields"
                             value="Menu"
                             (change)="change($event)"
+                            [readonly]="isDisabled"
                           ></ejs-dropdownlist>
                         </div>
                       </td>
@@ -136,6 +141,7 @@
                             [fields]="ddlfields"
                             value="Parent"
                             (change)="onChange($event)"
+                            [readonly]="isDisabled"
                           ></ejs-dropdownlist>
                         </div>
                       </td>
@@ -171,6 +177,7 @@
                             [fields]="fields1"
                             value="Multiple"
                             (change)="change1($event)"
+                            [readonly]="isDisabled"
                           ></ejs-dropdownlist>
                         </div>
                       </td>
@@ -189,6 +196,7 @@
                             [fields]="fields2"
                             value="Row"
                             (change)="change2($event)"
+                            [readonly]="isDisabled"
                           ></ejs-dropdownlist>
                         </div>
                       </td>
@@ -207,6 +215,7 @@
                             [fields]="fields3"
                             value="Flow"
                             (change)="change3($event)"
+                            [readonly]="isDisabled"
                           ></ejs-dropdownlist>
                         </div>
                       </td>
@@ -242,6 +251,7 @@
                             [fields]="reorderddlfields"
                             value="orderID"
                             (change)="onColumnReorderChange($event)"
+                            [readonly]="isDisabled"
                           ></ejs-dropdownlist>
                         </div>
                       </td>
@@ -260,6 +270,7 @@
                             [fields]="reorderfields"
                             value="0"
                             (change)="columnReorderchange($event)"
+                            [readonly]="isDisabled"
                           ></ejs-dropdownlist>
                         </div>
                       </td>
@@ -295,6 +306,7 @@
                             [fields]="cellalignddlfields"
                             value="orderID"
                             (change)="cellalignOnChange($event)"
+                            [readonly]="isDisabled"
                           ></ejs-dropdownlist>
                         </div>
                       </td>
@@ -313,6 +325,7 @@
                             [fields]="cellalignfields"
                             value="Right"
                             (change)="cellalignChange($event)"
+                            [readonly]="isDisabled"
                           ></ejs-dropdownlist>
                         </div>
                       </td>

@@ -31,6 +31,8 @@ export class GridDemoComponent implements OnInit {
   title = 'tree-grid';
   public data: Object[] = [];
 
+  isDisabled = false;
+
   /* ===== Start for sorting ===== */
   public sortSettings: any;
 
@@ -499,6 +501,8 @@ export class GridDemoComponent implements OnInit {
   /* ===== End for Cell Alignment  ===== */
 
   enableDisableGrid() {
+    this.isDisabled = !this.isDisabled;
+    console.log('this.isDisable: ', this.isDisabled);
     if (
       this.treegrid &&
       this.treegrid.element.classList.contains('disabletreegrid')
