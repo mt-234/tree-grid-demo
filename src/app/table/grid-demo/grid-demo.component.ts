@@ -18,6 +18,7 @@ import {
 } from '@syncfusion/ej2-grids';
 import {
   AccordionClickArgs,
+  ClickEventArgs,
   ExpandEventArgs
 } from '@syncfusion/ej2-navigations';
 import { sortData } from '../../../jsontreegriddata';
@@ -141,18 +142,19 @@ export class GridDemoComponent implements OnInit {
 
   /* ===== End for Accordion  ===== */
 
-  public allowPaging: boolean = false; 
+  public allowPaging: boolean = false;
 
   ngOnInit(): void {
     this.data = sortData;
+    console.log('this.data: ', this.data);
 
     /* increase data*/
-    for (let i = 4; i <= 6000; i++) {
+    for (let i = 4; i <= 4000; i++) {
       let dataStatic = {
         orderID: i,
         orderName: `Order ${i}`,
-        orderDate: new Date('26/07/2021'),
-        shippedDate: new Date('30/07/2021'),
+        orderDate: new Date(),
+        shippedDate: new Date(),
         units: '1120',
         unitPrice: '33',
         price: '108.80',
@@ -162,8 +164,8 @@ export class GridDemoComponent implements OnInit {
             orderID: parseFloat(`${i}.1`),
             orderName: 'Lead glassware',
             Category: 'Solid crystals',
-            orderDate: new Date('26/07/2021'),
-            shippedDate: new Date('30/07/2021'),
+            orderDate: new Date(),
+            shippedDate: new Date(),
             units: '542',
             unitPrice: '6',
             price: '32.52',
@@ -172,8 +174,8 @@ export class GridDemoComponent implements OnInit {
             orderID: parseFloat(`${i}.2`),
             orderName: 'Pharmaceutical Glassware',
             Category: 'Solid crystals',
-            orderDate: new Date('26/07/2021'),
-            shippedDate: new Date('30/07/2021'),
+            orderDate: new Date(),
+            shippedDate: new Date(),
             units: '324',
             unitPrice: '11',
             price: '35.64',
@@ -183,15 +185,15 @@ export class GridDemoComponent implements OnInit {
             orderName: 'Glass beads',
             Category: 'Solid crystals',
             units: '254',
-            orderDate: new Date('26/07/2021'),
-            shippedDate: new Date('30/07/2021'),
+            orderDate: new Date(),
+            shippedDate: new Date(),
             unitPrice: '16',
             price: '40.64',
           },
         ],
       };
 
-      this.data.push(dataStatic)
+      this.data.push(dataStatic);
     }
 
     // for sort
@@ -203,7 +205,10 @@ export class GridDemoComponent implements OnInit {
     };
 
     // for filtering
-    this.pageSettings = { pageSize: 1000, pageSizes: ["500", "1000", "1500", "All"]  };
+    this.pageSettings = {
+      pageSize: 1000,
+      pageSizes: ['500', '1000', '1500', 'All'],
+    };
     this.filterSettings = { type: 'Menu', hierarchyMode: 'Parent' };
     this.ddlfields = { text: 'mode', value: 'id' };
     this.typefields = { text: 'mode', value: 'id' };
@@ -243,7 +248,16 @@ export class GridDemoComponent implements OnInit {
       allowDeleting: true,
       mode: 'Row',
     };
-    this.toolbar = ['Add', 'Edit', 'Delete', 'Update', 'Cancel'];
+    this.toolbar = [
+      'Add',
+      'Edit',
+      'Delete',
+      'Update',
+      'Cancel',
+      'PdfExport',
+      'ExcelExport',
+      'CsvExport',
+    ];
     this.validationRules = { minLength: 0 };
     this.edit = { params: { format: 'n' } };
 
@@ -291,9 +305,6 @@ export class GridDemoComponent implements OnInit {
       'Delete',
       'Save',
       'Cancel',
-      'PdfExport',
-      'ExcelExport',
-      'CsvExport',
       'FirstPage',
       'PrevPage',
       'LastPage',
@@ -337,13 +348,12 @@ export class GridDemoComponent implements OnInit {
       (this.cellalignfields = { text: 'name', value: 'id' });
   }
 
-  ngAfterViewInit(): void { 
-
-    setTimeout(() => { 
-      this.treegrid.grid.height = 500; 
-      this.allowPaging = true; 
-    }, 2000) 
-  } 
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.treegrid.grid.height = 500;
+      this.allowPaging = true;
+    }, 2000);
+  }
 
   /* ===== Start for sort ===== */
   public onClick1(e: MouseEvent): void {
@@ -529,6 +539,51 @@ export class GridDemoComponent implements OnInit {
     }
     if (expandCount === 1 && ele === this.clickEle) {
       e.cancel = true;
+    }
+  }
+
+  toolbarClick(args: ClickEventArgs) {
+    if (args.item.id === '_gridcontrol_pdfexport') {
+      // Grid_pdfexport
+      const selectedRecords = this.treegrid.getSelectedRecords();
+
+      if (selectedRecords && selectedRecords.length > 0) {
+        this.treegrid.showSpinner()
+        const exportProperties = {
+          dataSource: selectedRecords,
+        };
+        this.treegrid.pdfExport(exportProperties);
+      } else {
+        // this.treegrid.showSpinner();
+        this.treegrid.pdfExport();
+      }
+    } else if (args.item.id === '_gridcontrol_excelexport') {
+      // Grid_excelexport
+      const selectedRecords = this.treegrid.getSelectedRecords();
+      if (selectedRecords && selectedRecords.length > 0) {
+        // this.treegrid.showSpinner();
+        const exportProperties = {
+          dataSource: selectedRecords,
+        };
+        this.treegrid.excelExport(exportProperties);
+      } else {
+        // this.treegrid.showSpinner();
+        this.treegrid.excelExport();
+      }
+      console.log('selectedRecords: ', selectedRecords);
+    } else if (args.item.id === '_gridcontrol_csvexport') {
+      // Grid_excelexport
+      const selectedRecords = this.treegrid.getSelectedRecords();
+      if (selectedRecords && selectedRecords.length > 0) {
+        // this.treegrid.showSpinner();
+        const exportProperties = {
+          dataSource: selectedRecords,
+        };
+        this.treegrid.csvExport(exportProperties);
+      } else {
+        // this.treegrid.showSpinner();
+        this.treegrid.csvExport();
+      }
     }
   }
 }
