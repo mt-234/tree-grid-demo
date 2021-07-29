@@ -335,6 +335,7 @@ export class GridDemoComponent implements OnInit {
     this.cellalignddlfields = { text: 'name', value: 'id' };
     (this.cellalignd1data = [
       { id: 'orderID', name: 'Order ID' },
+      { id: 'orderName', name: 'Order Name' },
       { id: 'Category', name: 'Category' },
       { id: 'orderDate', name: 'Order Date' },
       { id: 'units', name: 'Units' },
