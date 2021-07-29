@@ -150,52 +150,53 @@ export class GridDemoComponent implements OnInit {
     console.log('this.data: ', this.data);
 
     /* increase data*/
-    for (let i = 4; i <= 4000; i++) {
-      let dataStatic = {
-        orderID: i,
-        orderName: `Order ${i}`,
-        orderDate: new Date(),
-        shippedDate: new Date(),
-        units: '200',
-        unitPrice: '33',
-        price: '108.80',
-        Category: 'Crystal',
-        subtasks: [
-          {
-            orderID: parseFloat(`${i}.1`),
-            orderName: 'Lead glassware',
-            Category: 'Solid crystals',
-            orderDate: new Date(),
-            shippedDate: new Date(),
-            units: '100',
-            unitPrice: '6',
-            price: '32.52',
-          },
-          {
-            orderID: parseFloat(`${i}.2`),
-            orderName: 'Pharmaceutical Glassware',
-            Category: 'Solid crystals',
-            orderDate: new Date(),
-            shippedDate: new Date(),
-            units: '50',
-            unitPrice: '11',
-            price: '35.64',
-          },
-          {
-            orderID: parseFloat(`${i}.3`),
-            orderName: 'Glass beads',
-            Category: 'Solid crystals',
-            units: '50',
-            orderDate: new Date(),
-            shippedDate: new Date(),
-            unitPrice: '16',
-            price: '40.64',
-          },
-        ],
-      };
+    // for (let i = 4; i <= 4000; i++) {
+    //   let dataStatic = {
+    //     orderID: i,
+    //     orderName: `Order ${i}`,
+    //     orderDate: new Date(),
+    //     shippedDate: new Date(),
+    //     units: '200',
+    //     unitPrice: '33',
+    //     price: '108.80',
+    //     Category: 'Crystal',
+    //     subtasks: [
+    //       {
+    //         orderID: parseFloat(`${i}.1`),
+    //         orderName: 'Lead glassware',
+    //         Category: 'Solid crystals',
+    //         orderDate: new Date(),
+    //         shippedDate: new Date(),
+    //         units: '100',
+    //         unitPrice: '6',
+    //         price: '32.52',
+    //       },
+    //       {
+    //         orderID: parseFloat(`${i}.2`),
+    //         orderName: 'Pharmaceutical Glassware',
+    //         Category: 'Solid crystals',
+    //         orderDate: new Date(),
+    //         shippedDate: new Date(),
+    //         units: '50',
+    //         unitPrice: '11',
+    //         price: '35.64',
+    //       },
+    //       {
+    //         orderID: parseFloat(`${i}.3`),
+    //         orderName: 'Glass beads',
+    //         Category: 'Solid crystals',
+    //         units: '50',
+    //         orderDate: new Date(),
+    //         shippedDate: new Date(),
+    //         unitPrice: '16',
+    //         price: '40.64',
+    //       },
+    //     ],
+    //   };
 
-      this.data.push(dataStatic);
-    }
+    //   this.data.push(dataStatic);
+    // }
+    // console.log('this.data: ', JSON.stringify(this.data));
 
     // for sort
     this.sortSettings = {
