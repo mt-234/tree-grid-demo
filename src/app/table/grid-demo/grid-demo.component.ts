@@ -338,7 +338,6 @@ export class GridDemoComponent implements OnInit {
       { id: 'orderName', name: 'Order Name' },
       { id: 'Category', name: 'Category' },
       { id: 'orderDate', name: 'Order Date' },
-      { id: 'units', name: 'Units' },
     ]),
       (this.cellalignd2data = [
         { id: 'Right', name: 'Right' },
