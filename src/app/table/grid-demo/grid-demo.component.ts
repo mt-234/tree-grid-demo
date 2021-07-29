@@ -542,13 +542,14 @@ export class GridDemoComponent implements OnInit {
     }
   }
 
+  // custom option for exporting
   toolbarClick(args: ClickEventArgs) {
     if (args.item.id === '_gridcontrol_pdfexport') {
       // Grid_pdfexport
       const selectedRecords = this.treegrid.getSelectedRecords();
 
       if (selectedRecords && selectedRecords.length > 0) {
-        this.treegrid.showSpinner()
+        this.treegrid.showSpinner();
         const exportProperties = {
           dataSource: selectedRecords,
         };
@@ -585,5 +586,9 @@ export class GridDemoComponent implements OnInit {
         this.treegrid.csvExport();
       }
     }
+  }
+
+  onModeChange() {
+    this.treegrid.clearFiltering();
   }
 }
