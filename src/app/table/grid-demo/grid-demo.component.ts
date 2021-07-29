@@ -554,9 +554,11 @@ export class GridDemoComponent implements OnInit {
           dataSource: selectedRecords,
         };
         this.treegrid.pdfExport(exportProperties);
+        this.treegrid.hideSpinner();
       } else {
         // this.treegrid.showSpinner();
         this.treegrid.pdfExport();
+        this.treegrid.hideSpinner();
       }
     } else if (args.item.id === '_gridcontrol_excelexport') {
       // Grid_excelexport
@@ -567,9 +569,11 @@ export class GridDemoComponent implements OnInit {
           dataSource: selectedRecords,
         };
         this.treegrid.excelExport(exportProperties);
+        this.treegrid.hideSpinner();
       } else {
         // this.treegrid.showSpinner();
         this.treegrid.excelExport();
+        this.treegrid.hideSpinner();
       }
       console.log('selectedRecords: ', selectedRecords);
     } else if (args.item.id === '_gridcontrol_csvexport') {
@@ -581,9 +585,11 @@ export class GridDemoComponent implements OnInit {
           dataSource: selectedRecords,
         };
         this.treegrid.csvExport(exportProperties);
+        this.treegrid.hideSpinner();
       } else {
         // this.treegrid.showSpinner();
         this.treegrid.csvExport();
+        this.treegrid.hideSpinner();
       }
     }
   }
