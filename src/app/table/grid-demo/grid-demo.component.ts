@@ -13,6 +13,7 @@ import {
 } from '@syncfusion/ej2-angular-treegrid';
 import {
   ActionEventArgs,
+  getObject,
   QueryCellInfoEventArgs,
   SortEventArgs
 } from '@syncfusion/ej2-grids';
@@ -143,7 +144,7 @@ export class GridDemoComponent implements OnInit {
   /* ===== End for Accordion  ===== */
 
   public allowPaging: boolean = false;
-
+  totalCount = 0;
   ngOnInit(): void {
     this.data = sortData;
     console.log('this.data: ', this.data);
@@ -155,7 +156,7 @@ export class GridDemoComponent implements OnInit {
         orderName: `Order ${i}`,
         orderDate: new Date(),
         shippedDate: new Date(),
-        units: '1120',
+        units: '200',
         unitPrice: '33',
         price: '108.80',
         Category: 'Crystal',
@@ -166,7 +167,7 @@ export class GridDemoComponent implements OnInit {
             Category: 'Solid crystals',
             orderDate: new Date(),
             shippedDate: new Date(),
-            units: '542',
+            units: '100',
             unitPrice: '6',
             price: '32.52',
           },
@@ -176,7 +177,7 @@ export class GridDemoComponent implements OnInit {
             Category: 'Solid crystals',
             orderDate: new Date(),
             shippedDate: new Date(),
-            units: '324',
+            units: '50',
             unitPrice: '11',
             price: '35.64',
           },
@@ -184,7 +185,7 @@ export class GridDemoComponent implements OnInit {
             orderID: parseFloat(`${i}.3`),
             orderName: 'Glass beads',
             Category: 'Solid crystals',
-            units: '254',
+            units: '50',
             orderDate: new Date(),
             shippedDate: new Date(),
             unitPrice: '16',
@@ -596,5 +597,24 @@ export class GridDemoComponent implements OnInit {
 
   onModeChange() {
     this.treegrid.clearFiltering();
+  }
+
+  customAggregateFn(data: Object): number {
+    let sampleData: Object[] = getObject('result', data);
+    let countSum = 0;
+    if(sampleData){
+      sampleData.filter((item: any) => {
+        let data: string = getObject('units', item);
+        // if(item && !item.parentItem){
+          countSum = countSum + parseInt(data);
+        // }
+      });
+    }
+    if(countSum !== 0){
+      this.totalCount = countSum;
+      return countSum;
+    } else {
+      return this.totalCount;
+    }
   }
 }
