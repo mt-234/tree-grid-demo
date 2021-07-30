@@ -201,8 +201,6 @@ export class GridDemoComponent implements OnInit {
     // for sort
     this.sortSettings = {
       columns: [
-        { field: 'Category', direction: 'Ascending' },
-        { field: 'orderName', direction: 'Ascending' },
       ],
     };
 
