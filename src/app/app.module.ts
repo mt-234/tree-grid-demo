@@ -25,6 +25,7 @@ import {
   PageService,
   PdfExportService,
   ResizeService,
+  RowDDService,
   SortService,
   TreeGridAllModule,
   TreeGridModule
@@ -62,6 +63,7 @@ import { GridDemoComponent } from './table';
     ExcelExportService,
     PdfExportService,
     ContextMenuService,
+    RowDDService
   ],
   bootstrap: [AppComponent],
 })
