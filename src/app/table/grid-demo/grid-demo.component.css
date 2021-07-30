@@ -1,35 +1,46 @@
 .disabletreegrid {
-    pointer-events: none;
-    opacity: 0.4;
+  pointer-events: none;
+  opacity: 0.4;
 }
 .wrapper {
-    cursor: not-allowed;
+  cursor: not-allowed;
 }
 .container .row {
-    display: flex;
-    margin-top: 10px;
+  display: flex;
+  margin-top: 10px;
 }
-.property-section{
-    flex-basis: 100%;
-    text-align: center;
-    /* border: 1px solid rgb(116, 111, 111);  */
+.property-section {
+  flex-basis: 100%;
+  text-align: center;
+  /* border: 1px solid rgb(116, 111, 111);  */
 }
-.property-panel-header{
-    font-weight: bold;
-    background-color: #f3f3cbd4;
+.property-panel-header {
+  font-weight: bold;
+  background-color: #f3f3cbd4;
 }
 .e-gridcontent .e-content {
-    height: 275px !important;
+  height: 275px !important;
 }
 
-::ng-deep .e-grid .e-table  {
-    table-layout: auto !important;
+::ng-deep .e-grid .e-table {
+  table-layout: auto !important;
 }
 
 .scroll-touch {
-    -webkit-overflow-scrolling: touch; 
-  }
-  
-  .scroll-auto {
-    -webkit-overflow-scrolling: auto;
-  }
+  -webkit-overflow-scrolling: touch;
+}
+
+.scroll-auto {
+  -webkit-overflow-scrolling: auto;
+}
+
+::ng-deep.e-grid .e-gridheader .e-rightalign.e-fltr-icon .e-sortfilterdiv {
+  margin: -15px 0px !important;
+}
+::ng-deep.e-grid {
+  height: calc(100vh - 70px) !important;
+}
+
+::ng-deep.e-grid .e-content {
+  height: 100vh !important;
+}
