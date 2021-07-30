@@ -48,7 +48,7 @@
                         <div class="col-md-6">
                           <ejs-checkbox
                             #orderName
-                            [checked]="true"
+                            [checked]="false"
                             (change)="onClick1($event)"
                             [disabled]="isDisabled"
                           ></ejs-checkbox>
@@ -63,7 +63,7 @@
                         <div class="col-md-6">
                           <ejs-checkbox
                             #category
-                            [checked]="true"
+                            [checked]="false"
                             (change)="onClick2($event)"
                             [disabled]="isDisabled"
                           ></ejs-checkbox>
@@ -371,6 +371,7 @@
         (queryCellInfo)="queryCellInfo($event)"
         (toolbarClick)="toolbarClick($event)"
         isResponsive="true"
+        allowTextWrap="true"
       >
         <e-columns>
           <e-column
@@ -388,6 +389,7 @@
             width=""
             [validationRules]="ordernamerules"
             [edit]="dpParams"
+            textAlign="Right"
           ></e-column>
           <e-column
             field="Category"
