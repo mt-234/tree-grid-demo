@@ -25,22 +25,43 @@
 ::ng-deep .e-grid .e-table {
   table-layout: auto !important;
 }
-
-.scroll-touch {
+::ng-deep.scroll-touch {
   -webkit-overflow-scrolling: touch;
 }
-
-.scroll-auto {
+::ng-deep.scroll-auto {
   -webkit-overflow-scrolling: auto;
 }
-
 ::ng-deep.e-grid .e-gridheader .e-rightalign.e-fltr-icon .e-sortfilterdiv {
   margin: -15px 0px !important;
 }
-::ng-deep.e-grid {
-  height: calc(100vh - 70px) !important;
-}
 
+::ng-deep.e-grid.e-wrap .e-gridheader .e-rightalign .e-sortnumber {
+  position: absolute;
+  left: 3px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+::ng-deep.e-grid.e-wrap .e-columnheader .e-filtermenudiv {
+  line-height: 18px;
+  position: absolute;
+  top: 0;
+  right: 7px;
+  bottom: 0;
+  margin: auto;
+  padding: 0;
+  height: 17px;
+}
+::ng-deep.e-grid .e-gridheader .e-rightalign.e-fltr-icon .e-sortfilterdiv {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto !important;
+  padding: 0;
+}
+::ng-deep.e-grid .e-headercontent {
+  overflow: auto;
+}
 ::ng-deep.e-grid .e-content {
-  height: 100vh !important;
+  overflow: auto;
 }
