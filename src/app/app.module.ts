@@ -33,9 +33,10 @@ import {
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GridDemoComponent } from './table';
+import { DragDropComponent } from './table/drag-drop/drag-drop.component';
 
 @NgModule({
-  declarations: [AppComponent, GridDemoComponent],
+  declarations: [AppComponent, GridDemoComponent, DragDropComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
