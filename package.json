@@ -26,6 +26,7 @@
     "@syncfusion/ej2-angular-diagrams": "19.2.48",
     "@syncfusion/ej2-angular-documenteditor": "19.2.48",
     "@syncfusion/ej2-angular-dropdowns": "19.2.48",
+    "@syncfusion/ej2-angular-gantt": "^19.2.47",
     "@syncfusion/ej2-angular-grids": "19.2.48",
     "@syncfusion/ej2-angular-heatmap": "19.2.44",
     "@syncfusion/ej2-angular-inputs": "19.2.48",

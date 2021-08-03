@@ -11,6 +11,7 @@ import {
   DropDownListAllModule,
   MultiSelectAllModule
 } from '@syncfusion/ej2-angular-dropdowns';
+import { GanttModule, SelectionService } from '@syncfusion/ej2-angular-gantt';
 import { NumericTextBoxAllModule } from '@syncfusion/ej2-angular-inputs';
 import {
   AccordionModule,
@@ -33,10 +34,10 @@ import {
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GridDemoComponent } from './table';
+import { CopyPasteComponent } from './table/copy-paste/copy-paste.component';
 import { DragDropComponent } from './table/drag-drop/drag-drop.component';
-
 @NgModule({
-  declarations: [AppComponent, GridDemoComponent, DragDropComponent],
+  declarations: [AppComponent, GridDemoComponent, DragDropComponent, CopyPasteComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -54,6 +55,7 @@ import { DragDropComponent } from './table/drag-drop/drag-drop.component';
     DatePickerModule,
     SparklineAllModule,
     AccordionModule,
+    GanttModule
   ],
   providers: [
     AggregateService,
@@ -64,7 +66,8 @@ import { DragDropComponent } from './table/drag-drop/drag-drop.component';
     ExcelExportService,
     PdfExportService,
     ContextMenuService,
-    RowDDService
+    RowDDService,
+    SelectionService
   ],
   bootstrap: [AppComponent],
 })
